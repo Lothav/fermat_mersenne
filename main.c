@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 
 int calculaInverso(int a, int p){
@@ -49,7 +50,30 @@ void parteDois_Um(){
     inv = calculaInverso(a,p);
 
     if(inv == -1) printf("\n'a' divide 'p', portanto 'a' não tem inverso em Zp.\n");
-    else printf("O inverso de 'a' em Zp é =>  %d", inv);
+    else printf("O inverso de 'a' em Zp é =>  %d\n", inv);
+}
+
+
+void parteDois_Dois(){
+
+    int k, primo, pot, phy, aux;
+
+    printf(" - Insira o valor de k:" );
+    scanf(" %d",&k);
+
+    phy = 1;
+    primo = 2;
+    aux = k;
+    while(primo < k){
+	pot = 0;
+	while(aux % primo == 0){
+	    pot++;
+	    aux = aux/primo;
+	}
+	if(pot > 0) phy *= pow(primo, pot-1)*(primo-1);
+	primo++;
+    }
+    printf(" - O phi de 'k' e => %d\n", phy);
 }
 
 
@@ -57,11 +81,11 @@ int main(int argc, char** argv) {
     
     int op;
     
-    printf("##############################################");
-    printf("#       Trabalho Pratico Algebra A           #");
-    printf("#                                            #");
-    printf("# Aluno: Luiz Otavio R. Vasconcelos          #");
-    printf("# Matricula: 2015042142                      #");
+    printf("##############################################\n");
+    printf("#       Trabalho Pratico Algebra A           #\n");
+    printf("#                                            #\n");
+    printf("# Aluno: Luiz Otavio R. Vasconcelos          #\n");
+    printf(" # Matricula: 2015042142                      #\n");
     printf("##############################################\n\n");
     
     printf("Digite uma opção:");
@@ -70,6 +94,9 @@ int main(int argc, char** argv) {
     switch(op){
 	case 1:
 	    parteDois_Um();
+	    break;
+	case 2:
+	    parteDois_Dois();
 	    break;
     }
     
